@@ -230,9 +230,11 @@ typedef uint4 XMUINT4;
 #define D3DX11INLINE inline
 #endif
 
+#include <DirectXMath.h>
+
 #include <algorithm>
 #include <cfloat>
-#include <DirectXMath.h>
+#include <cmath>
 
 #define hlsl_precise
 
@@ -245,7 +247,7 @@ D3DX11INLINE float D3DX_Saturate_FLOAT(float _V)
 }
 D3DX11INLINE bool D3DX_IsNan(float _V)
 {
-    return _V != _V;
+    return isnan(_V);
 }
 D3DX11INLINE float D3DX_Truncate_FLOAT(float _V)
 {
