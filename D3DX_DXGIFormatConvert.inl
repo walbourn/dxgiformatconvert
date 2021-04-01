@@ -226,55 +226,31 @@ typedef uint4 XMUINT4;
 #error C++ compilation required
 #endif
 
-#include <float.h>
-#include <xnamath.h>
+#ifndef D3DX11INLINE
+#define D3DX11INLINE inline
+#endif
+
+#include <algorithm>
+#include <cfloat>
+#include <DirectXMath.h>
 
 #define hlsl_precise
 
-D3DX11INLINE FLOAT D3DX_Saturate_FLOAT(FLOAT _V)
+namespace DirectX
 {
-    return min(max(_V, 0), 1);
+
+D3DX11INLINE float D3DX_Saturate_FLOAT(float _V)
+{
+    return std::min<float>(std::max<float>(_V, 0), 1);
 }
-D3DX11INLINE bool D3DX_IsNan(FLOAT _V)
+D3DX11INLINE bool D3DX_IsNan(float _V)
 {
     return _V != _V;
 }
-D3DX11INLINE FLOAT D3DX_Truncate_FLOAT(FLOAT _V)
+D3DX11INLINE float D3DX_Truncate_FLOAT(float _V)
 {
-    return _V >= 0 ? floor(_V) : ceil(_V);
+    return _V >= 0 ? floorf(_V) : ceilf(_V);
 }
-
-// 2D Vector; 32 bit signed integer components
-typedef struct _XMINT2
-{
-    INT x;
-    INT y;
-} XMINT2;
-
-// 2D Vector; 32 bit unsigned integer components
-typedef struct _XMUINT2
-{
-    UINT x;
-    UINT y;
-} XMUINT2;
-
-// 4D Vector; 32 bit signed integer components
-typedef struct _XMINT4
-{
-    INT x;
-    INT y;
-    INT z;
-    INT w;
-} XMINT4;
-
-// 4D Vector; 32 bit unsigned integer components
-typedef struct _XMUINT4
-{
-    UINT x;
-    UINT y;
-    UINT z;
-    UINT w;
-} XMUINT4;
 
 #endif // HLSL_VERSION > 0
 
@@ -334,7 +310,7 @@ D3DX11INLINE FLOAT D3DX_SRGB_to_FLOAT(UINT val)
 #if HLSL_VERSION > 0
     return asfloat(D3DX_SRGBTable[val]);
 #else
-    return *(FLOAT*)&D3DX_SRGBTable[val];
+    return *reinterpret_cast<const FLOAT*>(&D3DX_SRGBTable[val]);
 #endif
 }
 
@@ -796,5 +772,10 @@ D3DX11INLINE UINT D3DX_INT2_to_R16G16_SINT(XMINT2 unpackedInput)
                      (unpackedInput.y              <<16) );
     return packedOutput;
 }
+
+#if HLSL_VERSION > 0
+#else
+} // namespace DirectX;
+#endif
 
 #endif // __D3DX_DXGI_FORMAT_CONVERT_INL___
