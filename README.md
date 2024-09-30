@@ -26,6 +26,11 @@ This project may contain trademarks or logos for projects, products, or services
 
 # Version History
 
-April 2021 - Updated to use DirectXMath in the Windows SDK instead of legacy XNAMath from the DirectX SDK for C++ support
+|Date|Notes|
+|---|---|
+|June 2010|Release in legacy DirectX SDK|
+|April 2021|Updated to use DirectXMath in the Windows SDK instead of legacy XNAMath from the DirectX SDK for C++ support|
+|September 2024|Updated to build with DXC Shader Model 6 compiler|
 
-June 2010 - Release in legacy DirectX SDK
+
+
