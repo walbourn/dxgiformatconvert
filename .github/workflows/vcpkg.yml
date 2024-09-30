@@ -87,6 +87,7 @@ jobs:
         cmake --preset=${{ matrix.build_type }} -DBUILD_DXIL_SHADERS=ON
         -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_MANIFEST_DIR="${{ github.workspace }}/build"
         -DVCPKG_TARGET_TRIPLET="${env:VCPKG_DEFAULT_TRIPLET}"
+        -DVCPKG_HOST_TRIPLET="${env:VCPKG_HOST_TRIPLET}"
 
     - name: 'Build'
       working-directory: ${{ github.workspace }}/Tests
