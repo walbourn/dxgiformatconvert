@@ -75,9 +75,9 @@ jobs:
         arch: ${{ matrix.arch }}
 
     - name: 'Configure CMake'
-      working-directory: ${{ github.workspace }}
+      working-directory: ${{ github.workspace }}/Tests
       run: cmake --preset=${{ matrix.build_type }} -DBUILD_DXIL_SHADERS=ON
 
     - name: 'Build'
-      working-directory: ${{ github.workspace }}
+      working-directory: ${{ github.workspace }}/Tests
       run: cmake --build out\build\${{ matrix.build_type }}
