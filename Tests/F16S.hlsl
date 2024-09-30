@@ -9,9 +9,12 @@
 [numthreads(1,1,1)]
 void main()
 {
-    for(uint y = 0; y < uUINT.Length.y; y++)
+    uint width, height;
+    uUINT.GetDimensions(width, height);
+
+    for(uint y = 0; y < height; y++)
     {
-        for(uint x = 0; x < uUINT.Length.x; x++)
+        for(uint x = 0; x < width; x++)
         {
             VALUES values;
             values.testVal = uUINT[uint2(x,y)];
