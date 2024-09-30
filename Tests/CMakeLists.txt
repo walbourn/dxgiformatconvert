@@ -54,10 +54,10 @@ target_include_directories(${PROJECT_NAME} PRIVATE ../)
 if(BUILD_DXIL_SHADERS AND VCPKG_TOOLCHAIN)
     set(ShaderProfile "cs_6_0")
     get_filename_component(_vcpkg_root "${CMAKE_CURRENT_LIST_DIR}" PATH)
+    message(STATUS "Test - ${_vcpkg_root}/build/vcpkg_installed/${VCPKG_HOST_TRIPLET}/tools/directx-dxc")
     find_program(DIRECTX_DXC_TOOL DXC.EXE
         REQUIRED NO_SYSTEM_ENVIRONMENT_PATH NO_CMAKE_SYSTEM_PATH NO_DEFAULT_PATH
-        HINTS ${DIRECTX_DXC_PATH}
-            "${_vcpkg_root}/build/vcpkg_installed/${VCPKG_HOST_TRIPLET}/tools/directx-dxc")
+        HINTS "${_vcpkg_root}/build/vcpkg_installed/${VCPKG_HOST_TRIPLET}/tools/directx-dxc")
     set(ShaderOpts "-HV 2021")
     message(STATUS "Using VCPKG for DirectXShaderCompiler (${VCPKG_HOST_TRIPLET}).")
 elseif(BUILD_DXIL_SHADERS)
