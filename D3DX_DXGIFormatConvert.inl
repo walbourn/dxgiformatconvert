@@ -202,10 +202,11 @@
 #ifndef __D3DX_DXGI_FORMAT_CONVERT_INL___
 #define __D3DX_DXGI_FORMAT_CONVERT_INL___
 
-#if HLSL_VERSION > 0
+#if (HLSL_VERSION > 0) || (__HLSL_VERSION > 0)
 
 #define D3DX11INLINE
 
+typedef float FLOAT;
 typedef int INT;
 typedef uint UINT;
 
@@ -223,7 +224,7 @@ typedef uint4 XMUINT4;
 #define D3DX_IsNan(_V) isnan(_V)
 #define D3DX_Truncate_FLOAT(_V) trunc(_V)
 
-#else // HLSL_VERSION > 0
+#else
 
 #ifndef __cplusplus
 #error C++ compilation required
@@ -257,7 +258,7 @@ D3DX11INLINE float D3DX_Truncate_FLOAT(float _V)
     return _V >= 0 ? floorf(_V) : ceilf(_V);
 }
 
-#endif // HLSL_VERSION > 0
+#endif
 
 //=============================================================================
 // SRGB Helper Functions Called By Conversions Further Below.
@@ -312,7 +313,7 @@ static const UINT D3DX_SRGBTable[] =
 
 D3DX11INLINE FLOAT D3DX_SRGB_to_FLOAT(UINT val)
 {
-#if HLSL_VERSION > 0
+#if (HLSL_VERSION > 0) || (__HLSL_VERSION > 0)
     return asfloat(D3DX_SRGBTable[val]);
 #else
     return *reinterpret_cast<const FLOAT*>(&D3DX_SRGBTable[val]);
@@ -675,7 +676,7 @@ D3DX11INLINE UINT D3DX_FLOAT3_to_B8G8R8X8_UNORM_SRGB(hlsl_precise XMFLOAT3 unpac
 // R16G16_FLOAT <-> FLOAT2
 //-----------------------------------------------------------------------------
 
-#if HLSL_VERSION > 0
+#if (HLSL_VERSION > 0) || (__HLSL_VERSION > 0)
 
 D3DX11INLINE XMFLOAT2 D3DX_R16G16_FLOAT_to_FLOAT2(UINT packedInput)
 {
@@ -693,7 +694,7 @@ D3DX11INLINE UINT D3DX_FLOAT2_to_R16G16_FLOAT(hlsl_precise XMFLOAT2 unpackedInpu
     return packedOutput;
 }
 
-#endif // HLSL_VERSION > 0
+#endif
 
 //-----------------------------------------------------------------------------
 // R16G16_UNORM <-> FLOAT2
@@ -778,7 +779,7 @@ D3DX11INLINE UINT D3DX_INT2_to_R16G16_SINT(XMINT2 unpackedInput)
     return packedOutput;
 }
 
-#if HLSL_VERSION > 0
+#if (HLSL_VERSION > 0) || (__HLSL_VERSION > 0)
 #else
 } // namespace DirectX;
 #endif
