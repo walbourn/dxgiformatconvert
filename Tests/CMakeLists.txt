@@ -88,7 +88,7 @@ foreach(FILE F10UN.hlsl F10UI.hlsl
   set_source_files_properties(${FILE} PROPERTIES ShaderType "cs")
   get_filename_component(FILE_WE ${FILE} NAME_WE)
   add_custom_command(TARGET shaders
-                     COMMAND ${DIRECTX_DXC_TOOL} /nologo /Emain /T${ShaderProfile} ${ShaderOpts} $<$<CONFIG:DEBUG>:/Od> /Zi /Fo ${CMAKE_BINARY_DIR}/${FILE_WE}.cso /Fd ${CMAKE_BINARY_DIR}/${FILE_WE}.pdb ${FILE}
+                     COMMAND ${DIRECTX_DXC_TOOL} /nologo /Ges /Gis /Emain /T${ShaderProfile} ${ShaderOpts} $<$<CONFIG:DEBUG>:/Od> /Zi /Fo ${CMAKE_BINARY_DIR}/${FILE_WE}.cso /Fd ${CMAKE_BINARY_DIR}/${FILE_WE}.pdb ${FILE}
                      MAIN_DEPENDENCY ${FILE}
                      COMMENT "HLSL ${FILE}"
                      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}

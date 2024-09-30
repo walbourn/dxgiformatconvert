@@ -204,6 +204,8 @@
 
 #if (HLSL_VERSION > 0) || (__HLSL_VERSION > 0)
 
+#pragma warning(disable: 3577)
+
 #define D3DX11INLINE
 
 typedef float FLOAT;
