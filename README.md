@@ -6,7 +6,7 @@ This utility header was introduced in the legacy DirectX SDK in June 2010.
 
 This repro contains the latest updates to this header, which is included in the [Microsoft.DXSDK.D3DX](https://www.nuget.org/packages/Microsoft.DXSDK.D3DX) NuGet package.
 
-Documentation can be found on [Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-unpacking-packing-dxgi-format)
+Documentation can be found on Microsoft Docs: [Programming Guide](https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-unpacking-packing-dxgi-format), [Reference Guide](https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/inline-format-conversion-reference).
 
 ## Notices
 
